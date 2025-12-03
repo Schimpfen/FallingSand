@@ -56,3 +56,29 @@ Datei-/Projektbezug
  Siehe Begleitdokument FallingSand-Aufgabenstellung für Kontext und Rahmenbedingungen aus der Übung.
 
  10 - 20 Seiten / keine Ganzen Code Blcöke in der Docu
+
+
+
+Person 1: Fachliches Konzept (Höller Maximmilian)
+
+Kurze Recherche (z.B. aus „Cellular Automata.pdf“ / „Agent‑Based Modelling.pdf“),
+Definition der Modellidee (Gitter, Zustände: leer/Sand/Wand/... und Regeln, wann ein Partikel fällt, rutscht etc.),
+Beschreibung der Ziele und der geplanten Experimente.
+
+Person 2: Simulationskern (Max Schimpf)
+
+Implementierung der Datenstrukturen (Gitter, Partikelzustände),
+Update‑Regeln als Algorithmus (z.B. zeilenweise Aktualisierung, Konfliktauflösung),
+Performance‑Optimierungen bei Bedarf.
+
+Person 3: Visualisierung & Interaktion (Kilian, Köck)
+
+Darstellung der Simulation (2D‑Raster, Farben für Materialien),
+Eingaben (Maus/Tastatur: Partikel „malen“, Parameter ändern),
+ggf. einfache Menü‑ oder Slider‑Steuerung.
+
+Person 4: Tests, Experimente & Dokumentation (Jonas,Höckner)
+
+Testfälle (z.B. einfache Szenarien, in denen klar ist, wie sich das System verhalten soll),
+Durchführung von Experimenten (verschiedene Parameter, Dichten, Startkonfigurationen),
+Auswertung (Plots, Screenshots) und Schreiben des Berichts/Präsentation.
