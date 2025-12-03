@@ -54,3 +54,5 @@ Agentenperspektive (optional)
 
 Datei-/Projektbezug
  Siehe Begleitdokument FallingSand-Aufgabenstellung für Kontext und Rahmenbedingungen aus der Übung.
+
+ 10 - 20 Seiten / keine Ganzen Code Blcöke in der Docu
