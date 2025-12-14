@@ -1,0 +1,1344 @@
+Introduction to 
+Agent-Based Modelling
+
+
+Outline
+• From Cellular Automata to Agent-Based Modelling
+• What is an Agent-Based Model
+• Properties of Agent-Based Models
+• Classification of Agent-Based Models
+
+
+FROM CELLULAR AUTOMATA TO AGENT-BASED
+MODELLING
+
+
+Historical Background 
+• Agent-based modelling is a comparably young modelling technique.
+• Were inspired by Cellular Automata (Von Neumann, Ulam, etc)
+• Thomas Schelling‘s Model of Segregation (1971) is broadly denoted as 
+the first agent-based model
+Model segregation behaviour between individuals with different races in US in the 1970s
+Model segregation behaviour between individuals 
+with different races in US in the 1970s
+
+
+Historical Background 
+• Agent-based modelling is a comparably young modelling technique.
+• Were inspired by Cellular Automata (Von Neumann, Ulam, etc)
+• Thomas Schelling‘s Model of Segregation (1971) is broadly denoted as 
+the first agent-based model
+
+
+Historical Background 
+• Agent-based modelling is a comparably young modelling technique.
+• Were inspired by Cellular Automata (Von Neumann, Ulam, etc)
+• Thomas Schelling‘s Model of Segregation (1971) is broadly denoted as 
+the first agent-based model
+
+
+A Small but Powerful Difference…
+CA Model
+Each cell is assigned a colour
+(= a person if colour is not white)
+
+
+A Small but Powerful Difference…
+Agent Based 
+Model (ABM)
+Each agent (= person) is 
+assigned a colour
+(blue or red) and a cell
+agent
+
+
+A Small but Powerful Difference…
+for C in Cellspace:
+if C is not white:
+N(C) = neighbourhood of C
+do update rules with C w.r. to N(C)
+Update Cellspace
+for A in AgentList:
+get cell and color of A
+find neighboured agents N(A)
+do some actions with A w.r. to N(A)
+Update AgentList
+ABM
+CA Model
+Pseudocode representation of a time step in Schelling‘s model.
+In principle both representations make sense for this 
+application. Yet Schelling used the second concept to 
+describe the model for its benefits.
+
+
+A Small but Powerful Difference…
+for A in AgentList:
+get cell and color of A
+find neighboured agents N(A)
+do some actions with A w.r. to N(A)
+Update AgentList
+In principle both representations make sense for this 
+application. Yet Schelling used the second concept to 
+describe the model for its benefits.
+We could distinguish
+between male and female
+agents (persons) 
+We do not have to
+use a cell-space
+It could be some „grayscales“ 
+in between if we want to
+We could add some
+immigrants
+We could introduce
+death of agents
+We do not have to use
+a dicrete time-step! 
+ABM
+We could include
+more realistic
+distributions
+It is easier to explain the
+model as it is a more natural
+description!
+
+
+WHAT IS AN AGENT-BASED MODEL
+
+
+What is an Agent?
+Why Agent?
+
+
+What is an Agent?
+Latin: „agere“ (to act)
+
+
+What is an Agent?
+• Agent – lat. agere (act)
+• There is no unique definition. The word is very broadly used.
+[Agent-based modelling is...] 
+„Rather a general concept“
+(Winter Simulation Conference 2005 & 2006)
+
+
+What is an Agent?
+▪With respect to Winter Simulation Conference (2005 & 2006) an agent has to...
+... be uniquely identifiable
+... cohabitate an environment with other agents, and has to be able to 
+communicate with them.
+... be able to act targeted.
+... be autonomous and independent.
+... be able to change its behaviour. 
+
+
+What is an Agent?
+▪With respect to Winter Simulation Conference (2005 & 2006) an agent has to...
+... be uniquely identifiable
+... cohabitate an environment with other agents, and has to be able to 
+communicate with them.
+... be able to act targeted.
+... be autonomous and independent.
+... be able to change its behaviour. 
+Optional properties  (Wintersimulation Conference 2015)
+
+
+Short Summary
+• Agent-Based modelling is a bottom up modelling approach using a big number of 
+individual system components (agents).
+• The components act independently (following given rules)
+• As it requires a lot of processing resources ABM is a very young science with high 
+potential.
+
+
+PROPERTIES OF AGENT-BASED MODELS
+
+
+Properties of Agent-Based Models
+(Bonabeau, 2002)
+a. Representation of „emergent phenomena“
+b. Flexibility
+c. Natural description of the system
+
+
+Properties of Agent-Based Models
+(Bonabeau, 2002)
+a. Representation of „emergent phenomena“
+b. Flexibility
+c. Natural description of the system
+
+
+Representation of „Emergent Phenomena“
+Simple rules for individual agents
+Complex dynamics of the whole system
+group dynamics / swarm intelligence
+
+
+Simple rules
+Representation of „Emergent Phenomena“
+
+
+Can lead to complex 
+behaviour
+Representation of „Emergent Phenomena“
+
+
+Representation of „Emergent Phenomena“
+https://www.youtube.com/watch?v=QOGCSBh3kmM
+
+
+Boids Flock Model
+Each agent tends towards 
+the centre of its neighbours
+Keep a distance that is 
+neither too far nor too small
+Swim in the same direction 
+as your neighbours
+
+
+Properties of Agent-Based Models
+(Bonabeau, 2002)
+a. Representation of „emergent phenomena“
+b. Flexibility
+c. Natural description of the system
+
+
+Flexibility
+• Change of details is very easy compared to other (especially macroscopic) 
+modelling approaches.
+• Different parameterisation of single agents does not require changes within the 
+system structure. 
+• Change or addition of (meta) rules for single agents does not influence the 
+system structure as well (as long as they remain compatible with the system).
+
+
+Example: Emergency exit strategy
+Agent-Based 
+Model
+Macroscopic 
+approach
+Easy
+Easy
+Example: Emergency exit strategy
+
+
+Example: Emergency exit strategy
+Agent-Based 
+Model
+Macroscopic 
+approach
+Easy
+Easy
+(Navier Stokes 
+PDE Based Model)
+
+
+Example: Emergency exit strategy
+Agent-Based 
+Model
+Macroscopic 
+approach
+Trick
+Easy
+
+
+Agent-Based 
+Model
+Easy
+Example: Emergency exit strategy
+
+
+Agent-Based 
+Model
+Macroscopic 
+approach
+y Med
+lmos
+possib
+Example: Emergency exit strategy
+
+
+Example: Emergency exit strategy
+Agent-Based 
+Model
+y Med
+
+
+Properties of Agent-Based Models
+(Bonabeau, 2002)
+a. Representation of „emergent phenomena“
+b. Flexibility
+c. Natural description of the system
+
+
+Natural description of the System
+•
+Components of the system look like in reality
+•
+Parameters can be seen like data or properties of individuals in reality
+•
+No mathematical background knowledge is required in order to understand the 
+modelling approach
+
+
+Agent
+Current Position:
+Wiedner 
+Hauptstraße 8-10
+Ground Floor
+Current State:
+Learning,
+Healthy,
+Hungry,
+Tired
+...
+Properties:
+Female,
+41 years,
+1.72 m,
+71kg,
+Non Smoker,
+...
+Target:
+Survive 
+until Lunch 
+Communi-
+cating with:
+Colleague to the left,
+Colleague to the right,
+Lecturer,
+...
+Natural description of the System
+
+
+Beware of wrong ideas!
+• Natural description of the system makes the
+model easier to communicate
+• Therefore it is often regarded as more credible
+by non-experts
+BUT
+VALID-LOOKING != VALID
+
+
+Example: Disease Spread Model
+How does an infectious disease 
+spread?
+Both models look reasonable…
+
+
+Interpretation of Agent-Based Model Results
+Basically two classes of 
+agent-based models can 
+be observed
+ABMs for quantitative
+investigation
+•
+Usually interested in 
+temporal behaviour of
+aggregate numbers
+•
+Usually used for some
+kind of resource
+planning
+ABMs for qualitative 
+investigation
+•
+Usually interested in 
+(temporal behaviour) of
+patterns
+•
+Usually used for 
+foundamental scientific
+research
+
+
+Interpretation of Agent-Based Model Results
+Basically two classes of 
+agent-based models can 
+be observed
+ABMs for quantitative
+investigation
+•
+Rather simple agent
+interactions
+•
+A lot of data involved
+for model
+parametrisation and
+validation
+•
+Usually less famous
+ABMs for qualitative 
+investigation
+•
+(On purpose) very abstract
+•
+Usually very complex
+model behaviour
+•
+Hardly any parameters
+identified with real data
+
+
+Interpretation of Agent-Based Model Results : 
+Examples
+ABMs for qualitative 
+investigation
+ABMs for quantitative
+investigation
+Schelling‘s Segregation Model
+GEPOC / SIR
+
+
+Interpretation of Agent-Based Model Results : 
+Examples
+„Schelling‘s model 
+predicts: In a few years 
+only immigrants in Wien 
+Hietzing!“
+WRONG 
+INTERPRETATION
+
+
+Interpretation of Agent-Based Model Results : 
+Examples
+„If we do not take care on 
+our migration policy human 
+homophobia might lead to 
+spatially visible ghettoism 
+as seen above in Austria as 
+well!“
+CORRECT 
+INTERPRETATION
+
+
+Interpretation of Agent-Based Model Results : 
+Examples
+WRONG 
+INTERPRETATION
+„GEPOC predicts: 
+In two years there 
+will be am 
+infected 50 year 
+old immigrant in 
+Leibnitz“
+Hi guys, i‘m
+Mike
+In general: Never pick only one
+agent from an ABM!
+
+
+Interpretation of Agent-Based Model Results : 
+Examples
+„GEPOC 
+predicts: Austrian 
+population is 
+assumed to grow 
+to x.x Mio people 
+until 2030.“
+CORRECT 
+INTERPRETATION
+
+
+Summary: Properties of Agent-Based Models
+Agent-based models are good in…
+•
+… analysis and discovery of complex group dynamic behaviour. This must not 
+necessarily be a good thing as emergent behaviour may occur in models even if
+it is not correct.
+•
+… communitcating models to non-experts. 
+The modelling appoach is easy to understand, picturesque and no mathematical
+background is necessary.
+
+
+Summary: Properties of Agent-Based Models
+Agent-based models are good in…
+•
+… analysis and discovery of complex group dynamic behaviour. 
+•
+… communitcating models to non-experts. 
+Agent-based modelling is problematic …
+• … regards misinterpretation. If it looks like reality it must not necessarily be a 
+valid model for it. 
+• … regards the validation process. Validation of ABMs is a difficult task due to
+complex model behaviour.
+• … regards computer ressources. ABMs require high performance CPUs and a lot
+of RAM.
+
+
+ABM CLASSIFICATION AND CASE STUDIES
+
+
+Goal
+• Get some idea about, how an agent-based model may „look like“
+• Get some idea about, how diverse agent-based modelling is
+• Classifications of ABMs – clean-up this mess...
+• Tips and Tricks
+
+
+Case Study 1: Predator Prey Model
+Modelling
+Dynamics: Predator eats Prey
+              Predator / Prey births, deaths
+Environment: isolated
+Measurement:  Predator Population
+ 
+5 Years = 60 months, quarterly
+Problem:  When is a reasonable time to use 
+chemical pesticides to reduce number of 
+predators?
+Model
+Problem
+
+
+Case Study 1: Predator Prey Model
+51
+Modelling
+Model
+Problem
+
+
+Case Study 1: Predator Prey Model
+52
+Modelling
+Model
+Problem
+Separation – 
+   Isolated environment
+Choice -
+   2 variables = 2 states
+𝑌𝑡… Prey
+𝑋𝑡… Predators
+Approach 1 (see 1st lecture)
+
+
+Case Study 1: Predator Prey Model
+53
+Modelling
+Model
+Problem
+Separation – 
+   Isolated environment
+     (~ rectangular grid)
+Choice -
+   𝑌𝑡= #{𝑦𝑖(𝑡)} prey agents
+   𝑋𝑡= #{𝑥𝑖(𝑡)} predator agents
+𝑦𝑖𝑡… Prey animal
+𝑥𝑖𝑡… Predator animal
+timestep 𝑑𝑡
+
+
+Case Study 1: Predator Prey Model
+• Initialisation:
+𝑌0 = 𝑌0 prey agents and 𝑋0 = 𝑋0 predator agents distributed 
+uniformly on a rectangular grid with 𝑀⋅𝑁> 𝑌0 + 𝑋0 cells
+• Time Step Dynamics:
+A time step is split into two phases: 
+1. Movement 
+2. Population Dynamics
+
+
+Case Study 1: Predator Prey Model
+• Time Step Dynamics:
+A time step is split into
+two phases: 
+1.
+Movement
+2.
+Population Dynamics
+Prey
+Predator
+•
+Every agent moves in a randomly 
+picked neighbour cell (Moore 
+neighbourhood)
+
+
+Case Study 1: Predator Prey Model
+• Time Step Dynamics:
+A time step is split into
+two phases: 
+1.
+Movement
+2.
+Population Dynamics
+Prey
+Predator
+•
+Every agent moves in a randomly 
+picked neighbour cell (Moore 
+neighbourhood)
+•
+Iterate in random order, periodic 
+boundary conditions
+
+
+Case Study 1: Predator Prey Model
+• Time Step Dynamics:
+A time step is split into 
+two phases: 
+1.
+Movement 
+2.
+Population Dynamics
+Prey
+Predator
+Every time-step agents are iterated in 
+random order:
+Predator:
+•
+Every predator dies with probability 
+𝛼
+•
+If prey is around (Moore), the 
+predator successfully catches one of 
+it with probability 𝛽and „replaces“ it 
+by one offspring
+Prey:
+•
+If possible, every prey produces an 
+offspring in one randomly picked 
+neighbour cell with probability γ
+
+
+Case Study 1: Predator Prey Model
+
+
+Case Study 1: Predator Prey Model
+Compare ABM model 
+results with SD model 
+results
+
+
+Case Study 1: Predator Prey Model
+•
+Fuzzy (randomness)
+•
+Dying out
+•
+Scale
+
+
+Case Study 1: Predator Prey Model
+•
+Fuzzy (randomness)
+•
+Dying out
+•
+Scale
+Mean value of many 
+simulation runs
+
+
+Case Study 1: Lessons Learned
+Lesson 1: Be careful, in which sequence/order agents are
+addressed to perform actions when updating in steps. 
+Don‘t unintentially favour some! 
+You are responsible for correctly
+ordering events within atomic time-
+steps!
+
+
+Case Study 1: Lessons Learned
+Lesson 1: Be careful, in which sequence/order agents are
+addressed to perform actions when updating in steps. 
+Don‘t unintentially favour some! 
+Lesson 2: Be careful, when implementing movement on a 
+grid. Don‘t occupy spots twice!
+Think about splitting: „movement“ in 
+„attempt movement“ and „execute
+movement“
+
+
+Case Study 1: Lessons Learned
+Lesson 1: Be careful, in which sequence/order agents are 
+addressed to perform actions when updating in steps. 
+Don‘t unintentially favour some! 
+Lesson 2: Be careful, when implementing movement on a 
+grid. Don‘t occupy spots twice!
+Lesson 3: Never judge only based on only one simulation 
+result, if randomness is involved!
+Perform Monte 
+Carlo simulation
+
+
+Case Study 2: Boids Flock Model
+https://www.youtube.com/watch?v=QOGCSBh3kmM
+•
+Model for simulation of (bird) flocking 
+behaviour
+•
+Craig Reynolds in 1986
+•
+Three simple rules on individual 
+level lead to complex behaviour 
+of the crowd
+
+
+Case Study 2: Boids Flock Model
+Each agent tends towards 
+the centre of its neighbours
+Keep a distance that is 
+neither too far nor too small
+Swim in the same direction 
+as your neighbours
+
+
+Case Study 2: Boids Flock Model
+•
+𝑎𝑘current position of agent 𝑘
+•
+𝑣𝑘current velocity of agent 𝑘
+
+
+Case Study 2: Boids Flock Model
+Each agent tends 
+towards the centre 
+of its neighbours
+Let 𝑎𝑘be the position of agent 
+𝑘and let 
+𝐼≔{𝑘≠𝑖:
+𝑎𝑘−𝑎𝑖
+< 𝑂𝑟}
+for and observation radius 𝑂𝑟. 
+Then:
+𝑑1
+𝑘= 1
+|𝐼| ෍
+𝑖∈𝐼
+𝑎𝑖−𝑎𝑘
+
+
+Case Study 2: Boids Flock Model
+Let 𝑣𝑘be the velocity of agent 
+𝑘and let 
+𝐼≔{𝑘≠𝑖:
+𝑎𝑘−𝑎𝑖
+< 𝑂𝑟}
+for and observation radius 𝑂𝑟. 
+Then:
+𝑑2
+𝑘= 1
+|𝐼| ෍
+𝑖∈𝐼
+𝑣𝑖
+Swim in the same 
+direction as your 
+neighbours
+
+
+Case Study 2: Boids Flock Model
+Let 𝑎𝑘be the position of agent 
+𝑘and let 
+𝐽≔{𝑘≠𝑖:
+𝑎𝑘−𝑎𝑖
+< 𝐶𝑟}
+for and collision radius C𝑟. 
+Then:
+𝑑3
+𝑘= 𝑎𝑘−1
+|𝐽| ෍
+𝑖∈𝐽
+𝑎𝑖
+Keep a distance 
+that is neither too 
+far nor too small
+
+
+Case Study 2: Boids Flock Model
+Update velocity 
+෤𝑣𝑖= 𝛼0𝑣𝑖+ 𝛼1𝑑1
+𝑖+ 𝛼2𝑑2
+𝑖+ 𝛼3𝑑3
+𝑖
+Update position 
+෤𝑥𝑖= 𝑥𝑖+ ෤𝑣𝑖
+
+
+Case Study 2: Boids Flock Model
+• Boids model is the most 
+picturesque example for 
+emergence in ABMs
+• It is a good test case for 
+agent-based simulators 
+(high computation 
+performance required)
+
+
+Case Study 2: Lessons Learned
+Think about benefits vs drawbacks
+of parallelisation on agent-level. 
+(at least, try to parallelize Monte 
+Carlo simulation)
+Lesson 4: ABMs  are often computationally expensive! 
+Think about, how to optimize your code performance 
+Try to avoid 𝑂𝑁2
+Try to avoid „searching“
+
+
+Case Study 2: Lessons Learned
+Lesson 4: ABMs  are often computationally expensive! 
+Think about, how to optimize your code performance 
+Try to avoid 𝑂𝑁2
+Try to avoid „searching“
+Bad solution:
+for (agent1:agents) {
+for (agent2:agents) {
+if
+(agent1.region==agent2.region){
+do something…
+}
+}
+}
+
+
+Case Study 2: Lessons Learned
+Lesson 4: ABMs  are often computationally expensive! 
+Think about, how to optimize your code performance 
+Try to avoid 𝑂𝑁2
+Try to avoid „searching“
+Better solution:
+regionMap = Map()
+for (agent:agents) {
+regionMap[agent.region].add(agent)
+}
+for (agent:agents) {
+others = regionMap[agent.region]
+for (agent2: others) {
+do something…
+}
+}
+
+
+Case Study 2: Lessons Learned
+Lesson 4: ABMs  are often computationally expensive! 
+Think about, how to optimize your code performance 
+Lesson 5: Think about potentially different individual 
+perceptions: i.e. what every agent knows/sees.
+Correctly model individual 
+perceptions is the key to
+implementing realistic behaviour
+
+
+Case Study 2: Lessons Learned
+Lesson 4: ABMs  are often computationally expensive! 
+Think about, how to optimize your code performance 
+Lesson 6: A fully reproducible model description is 
+difficult and can be long and cconfusing. Think about 
+using a standartised protocol for it. 
+Lesson 5: Think about potentially different individual 
+perceptions: i.e. what every agent knows/sees.
+Usually it is worth to make two
+documentations: one lay
+documentation and one technical
+
+
+Case Study 2: Lessons Learned
+•
+Example: ODD 
+Protocol by Volker 
+Grimm et.al.
+•
+Standartised 
+documentation of 
+agent-based models
+Grimm, Volker, Uta Berger, Finn Bastiansen, Sigrunn Eliassen, Vincent Ginot, Jarl Giske, John Goss-Custard, u. a. „A Standard Protocol 
+for Describing Individual-Based and Agent-Based Models“. Ecological Modelling 198, Nr. 1–2 (September 2006): 115–26. 
+https://doi.org/10.1016/j.ecolmodel.2006.04.023.
+
+
+Classification of ABMs (1)
+vs.
+Differences?
+
+
+Classification of ABMs (1)
+Classification 1
+with respect to modelling purpose (i.e. the research question)
+ABMs for qualitative investigation
+ABMs for quantitative investigation
+•
+(On purpose) very abstract
+•
+Usually very complex model 
+behaviour
+•
+Hardly any parameters 
+identified with real data
+•
+Rather simple agent interactions
+•
+A lot of data involved for model 
+parametrisation and validation
+•
+Usually less famous
+
+
+Classification of ABMs (2)
+Classification 2
+with respect to agent environment
+spatial environment
+abstract environment
+lattice
+continuous
+network
+...
+•
+Sometimes 
+equivalent to a 
+CA
+•
+Different forms 
+of grids
+•
+1D – 3D
+•
+Often uses distance-
+metrics for agent 
+interaction
+•
+Surprisingly, often 
+easier to handle than 
+lattice models
+•
+Contacts 
+between 
+agents 
+modelled as 
+edges of a 
+network
+
+
+Case Study 3: Gipps ‘s Car Following Model
+•
+Each car in a one-lane road is represented by an 
+agent
+•
+Each agent 𝑖has a certain length 𝐿𝑖, position 𝑥𝑖(𝑡)
+and velocity 𝑣𝑖(𝑡)
+•
+Velocity update is based on a differential equation 
+that includes the distance to and velocity of the car 
+in front
+
+
+Case Study 3: Gipps ‘s Car Following Model
+•
+Each car in a one-lane 
+road is represented by an 
+agent
+•
+Each agent 𝑖has a certain 
+length 𝐿𝑖, position 𝑥𝑖(𝑡)
+and velocity 𝑣𝑖(𝑡)
+•
+Velocity update is based 
+on a differential equation 
+that includes the 
+distance to and velocity 
+of the car in front
+ሶ𝑣𝑖+1(𝑡+ 𝜏) = 𝐴⋅
+𝑣𝑖(𝑡) −𝑣𝑖+1(𝑡)
+𝑥𝑖𝑡−𝑥𝑖+1 𝑡−𝐿𝑖
+𝐴... acceleration constant
+𝜏... reaction time
+
+
+Case Study 3: Gipps ‘s Car Following Model
+•
+Each car in a one-lane 
+road is represented by an 
+agent
+•
+Each agent 𝑖has a certain 
+length 𝐿𝑖, position 𝑥𝑖(𝑡)
+and velocity 𝑣𝑖(𝑡)
+•
+Velocity update is based 
+on a differential equation 
+that includes the 
+distance to and velocity 
+of the car in front
+ሶ𝑣𝑖+1(𝑡+ 𝜏) = 𝐴⋅
+𝑣𝑖(𝑡) −𝑣𝑖+1(𝑡)
+𝑥𝑖𝑡−𝑥𝑖+1 𝑡−𝐿𝑖
+𝐴... acceleration constant
+𝜏... reaction time
+Some additional parameters: 
+lingering, maximum velocity, maximum acceleration, maximum break force, length of 
+the road
+
+
+Case Study 3: Gipps ‘s Car Following Model
+• Gipps model poses the base 
+for most modern models for 
+traffic flow
+• Alternative approaches: 
+Nagel-Schreckenberg Model, 
+Burgers equation
+• Extensions to: multiple lanes, 
+junctions, traffic lights, ... 
+
+
+Case Study 3: Gipps ‘s Car Following Model
+vs.
+Differences?
+
+
+Classification of ABMs (3)
+Classification 3
+with respect to time update
+time continuous
+time discrete
+differential equation
+event-based
+time steps
+•
+Usually used for 
+systems with physical 
+laws
+•
+Often used for 
+scheduling 
+problems
+•
+Most common 
+update strategy.
+•
+Needs special care 
+with events 
+happening at the 
+same time
+
+
+Case Study 4: Nagel Schreckenberg Model
+• 1992, Kai Nagel and 
+Michael Schreckenberg 
+• Same Purpose as Gipps 
+Model
+• Discrete 1D Grid insread of 
+continuous road
+• One car per grid point
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+5
+• Agents enter the model from the left (at the left-
+most cell)
+• Each agent has a certain velocity (natural number)
+• Model is updated with equidistant time-steps
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+5
+Each time-step, each agent...
+• Updates its velocity according to the car in front (if 
+any)
+• Drives that many cells to the right
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+5
+Each time-step, each agent...
+• Updates its velocity according to the car in front (if 
+any)
+1.
+Increases its velocity 𝑣by one: 𝑣←𝑣+ 1
+2.
+Checks how many cells to the right are empty (say 𝑞)
+3.
+If 𝑣> 𝑞, then 𝑣←𝑞
+4.
+With a certain probability: 𝑣←max(𝑣−1,0)
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+5
+Each time-step, each agent...
+• Updates its velocity according to the car in front (if 
+any)
+• Drives that many cells to the right
+1.
+agent advances 𝑣cells
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+5
+Increases its velocity 𝑣by one: 𝑣←
+𝑣+ 1
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+5
+Increases its velocity 𝑣by one: 𝑣←
+𝑣+ 1
+4
+6
+Checks how many cells to the right 
+are empty (say 𝑞)
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+5
+Increases its velocity 𝑣by one: 𝑣←
+𝑣+ 1
+4
+6
+Checks how many cells to the right 
+are empty (say 𝑞)
+4
+6
+𝑞= 5
+𝑞= ∞
+
+
+Case Study 4: Nagel Schreckenberg Model
+4
+6
+𝑞= 5
+𝑞= ∞
+If 𝑣> 𝑞, then 𝑣←𝑞
+
+
+Case Study 4: Nagel Schreckenberg Model
+4
+6
+𝑞= 5
+𝑞= ∞
+If 𝑣> 𝑞, then 𝑣←𝑞
+4
+6
+With a certain probability: 𝑣←max(𝑣−1,0)
+
+
+Case Study 4: Nagel Schreckenberg Model
+4
+6
+𝑞= 5
+𝑞= ∞
+If 𝑣> 𝑞, then 𝑣←𝑞
+4
+6
+With a certain probability: 𝑣←max(𝑣−1,0)
+4
+5
+
+
+Case Study 4: Nagel Schreckenberg Model
+4
+5
+agent advances 𝑣cells
+4
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+1
+2
+2
+0
+3
+2
+0
+
+
+Case Study 4: Nagel Schreckenberg Model
+
+
+Case Study 4: Nagel Schreckenberg Model
+• Model usually described 
+as a cellular automaton
+• Model extendable to 
+multiple lanes
+• Either torodorial 
+boundary conditions or 
+new generation of cars 
+every time-step
+
+
+Case Study 4: Nagel Schreckenberg Model
+vs.
+Differences?
+(apart from known)
+
+
+Case Study 4: Nagel Schreckenberg Model
+3
+1
+2
+3
+0
+3
+3
+1
+2
+3
+0
+vs.
+Differences?
+
+
+Classification of ABMs (4)
+Classification 4
+with respect to agent population
+population static
+population dynamic
+•
+agents only generated at the 
+beginning of the simulation
+•
+system variables only change 
+due to change of agent states
+•
+agents are (can be) generated on 
+run-time
+•
+system variables can also change 
+due to change of number of 
+agents
+•
+usually more difficult to deal with 
+due to space allocation of vectors
+
+
+Case Study 4: Lessons Learned
+Lesson 7: Careful when implementing population 
+dynamic agent based models: Removal and adding of 
+elements to a list is usually expensive.
+Consider, recreating the list every time instead of adding 
+and removal! 
+Make some benchmarks here. 
+You have nothing to lose but much
+to win!
+
+
+Case Study 5: Opinion Dynamics
+• Specific model from Guillaume Deffuant 2000 
+(basic concepts much older)
+• Simple model that depicts spread and 
+development of different opinions
+op1
+op2
+
+
+Case Study 5: Opinion Dynamics
+op1
+op2
+contact
+discussion
+denial
+
+
+Case Study 5: Opinion Dynamics
+op1
+op2
+contact
+discussion
+denial
+op1
+op2
+op1
+op2
+
+
+Case Study 5: Opinion Dynamics
+• 𝑁agents are initialised
+• Every agent is assigned an opinion 𝑥∈
+[−1,1]
+• Every time step, 
+– Split the population into two random but 
+equivalent halves
+– pick 𝑁/2 random partners from both, say 
+with opinions 𝑥and 𝑦.
+– If 𝑥−𝑦< 𝜏, the two start discussing and
+𝑥←𝑥+ 𝜇𝑦−𝑥
+𝑦←𝑦−𝜇(𝑦−𝑥)
+– Otherwise
+𝑥←𝑥
+𝑦←𝑦
+𝑥
+𝑦
+𝜏∈0,2
+𝜇∈0, 1
+2
+
+
+Case Study 5: Opinion Dynamics
+• Picturesque model to show, how communities with 
+different opinions develop (e.g. Political parties,...)
+
+
+Case Study 5: Opinion Dynamics
+• Options to investigate different 
+topological structures of the contact
+network and contact behaviour
+
+
+Case Study 5: Lessons Learned
+Lesson 8: Use configuration files and unique scenario Ids
+not to lose track of the different created results. Make
+sure that the mapping between configuration and result
+is reproducible
+Think about reproducibility of
+random events
+
+
+Case Study 5: Lessons Learned
+Lesson 8: Use configuration files and unique scenario Ids
+not to lose track of the different created results. Make
+sure that the mapping between configuration and result
+is reproducible
+Enable serialisation and 
+deserialisation or agents?
+Lesson 9: Think about splitting initialisation and 
+execution process. E.g. generation of random networks
+or initial sampling might take long.
+
+
+vs.
+any new differences?
+op1
+op2
+Case Study 5: Opinion Dynamics
+
+
+Classification of ABMs (5)
+Classification 5
+with respect to randomness (stochasticity)
+stochastic
+deterministic
+initial-value stochastic
+update stochastic
+•
+Initial setting (of 
+agents) is determined 
+using random 
+numbers
+•
+Update rules 
+user random 
+numbers
+•
+The outcome of the 
+model is uniquely 
+defined by its initial 
+condition
+
+
+Summary
+When developing an agent-based model particularly care for ...
+• ... order of actions / simultaneous events
+• ... correct result interpretation
+(randomness , quantitative/qualitative, ...)
+• … reproducible experimental design (configuration files …)
+• ... code performance
+• ... reproducible documentation(s)
+
+
