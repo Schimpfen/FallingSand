@@ -1,0 +1,73 @@
+Tl Mathematical
+I Modelling and
+ae § Simulation
+
+Falling Sand
+
+Figure 1: Falling sand automaton [1]
+
+Motivation
+
+A great portion of concrete (around 70 vol-%) consists of sand. In order to produce concrete more
+sustainably, material scientists try to find a way to use desert sand for producing concrete. This is only
+possible to a certain amount, because desert sand is almost perfectly round, due to erosion. This leads
+to a flowability (see figure 2) of the desert sand that is too high for the use in concrete.
+
+One approach is to mix the round sand particles with more granular particles, such that a certain cohesion
+is reached.
+
+oo00000
+eoeeece @
+
+Figure 2: flowability of particles, left: low flowability, right: high flowability
+
+Model
+
+Falling particles is a good example for creating an cellular automaton. The model should be able to
+simulate two things:
+
+e the pouring of a mixture of sand particles of two different granularities on a flat surface inside a
+box
+
+e the behaviour of falling sand on a non-flat surface inside a box
+
+For the first point, the model should have a parameter that is responsible for the ratio between the two
+granularities. After a simulation, the model should return nice visualizations and Ah, which is the height
+difference between the lowest and the highest sand particle on the surface, see Figure 3 !.
+
+1Note: Usually, the flowability of particles is obtained using the angle of response, see https: //www.granutools.com/
+en/news/55_angle-of-repose for more information.
+
+
+Tl Mathematical
+I Modelling and
+ae § Simulation
+
+Figure 3: examples for Ah on different heaps in a box
+
+To Do’s
+
+Task 1
+
+Sketch a plan for the model and set the assumptions, i.e.: List the parameters of the model. Work out
+update rules for the two different types of sand particles. These rules should represent the behaviour of
+edgy and round sand particles.
+
+Task 2
+
+Implement the model in a language of your choice (Python, Matlab, etc). The model should have a
+parameter for the ratio and the type of surface, produce vizualisations and return Ah.
+
+Task 3
+
+Run the model with different ratios and at least one non-flat surface.
+
+Task 4
+
+Create a nice visualizations and write the protocol. Document the division of labour.
+
+References
+
+[1] Hahm, Christian. (2023). A Framework of Artificial Matter.
+
+

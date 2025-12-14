@@ -1,7 +1,7 @@
 # Task 1: Concept & Model Design
 
 ## 1. General Concept
-For this exercise, I am building a **Stochastic Cellular Automaton** to simulate falling sand. The main goal is to model the physical differences between "round" particles (like desert sand) and "edgy" particles (like crushed stone) to see how they mix and stack.
+For this exercise, we are building a **Stochastic Cellular Automaton** to simulate falling sand. The main goal is to model the physical differences between "round" particles (like desert sand) and "edgy" particles (like crushed stone) to see how they mix and stack.
 
 The core idea is that while both types of sand obey gravity, they interact differently with their neighbors. "Round" sand flows almost like a liquid (high flowability), while "edgy" sand has high friction and builds steep piles.
 
@@ -30,7 +30,7 @@ Every cell in the grid will be assigned an integer to represent its material:
 * **3:** Wall/Ground (Static Obstacle)
 
 ## 5. Update Rules (The Logic)
-For every frame of the simulation, I update the particles based on the following logic rules.
+For every frame of the simulation, we update the particles based on the following logic rules.
 
 ### Rule 1: Gravity (Free Fall)
 *Applies to both types.*
