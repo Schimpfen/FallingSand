@@ -28,6 +28,13 @@ wheels/
 .installed.cfg
 *.egg
 
+# Node / Bun / Frontend
+node_modules/
+bun.lockb
+dist/
+.vite/
+*.tsbuildinfo
+
 # IDE
 .vscode/
 .idea/

@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap");
+
+:root {
+  color-scheme: light;
+  --surface: #f8fafc;
+  --panel: #ffffff;
+  --border: #d4dbe7;
+  --muted: #4b5563;
+  --accent: #2563eb;
+  --accent-2: #f97316;
+  --bg-gradient: radial-gradient(
+    circle at 10% 10%,
+    #dbeafe 0,
+    #e2e8f0 40%,
+    #f8fafc 100%
+  );
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-gradient);
+  color: #0f172a;
+}
+
+h1 {
+  margin: 0.2rem 0 0.4rem 0;
+  letter-spacing: -0.02em;
+}
+
+.app-shell {
+  max-width: 1600px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 24px 18px 48px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.lede {
+  margin: 0;
+  max-width: 760px;
+  color: #1f2937;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 16px;
+}
+
+.controls-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.canvas-column {
+  min-width: 0;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.label-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.label-stack small {
+  color: var(--muted);
+}
+
+.narrow-input {
+  width: 80px;
+  display: flex;
+  text-align: end;
+}
+
+.stage-actions,
+.stream-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.stream-actions.secondary {
+  margin-top: 4px;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-block: 6px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.metric {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #f8fafc;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.helper-text {
+  color: var(--muted);
+}
+
+.canvas-shell {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b1224;
+}
+
+.canvas-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.canvas-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 200px;
+}
+
+.sim-canvas {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.canvas-overlay {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  padding: 10px 12px 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.8),
+    rgba(15, 23, 42, 0.92)
+  );
+  color: #e5e7eb;
+  font-size: 0.95rem;
+}
+
+.canvas-overlay .label {
+  color: #e0f2fe;
+}
+
+.canvas-overlay ul {
+  margin: 4px 0 0 16px;
+  padding: 0;
+}
+
+.canvas-overlay li {
+  margin-bottom: 2px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 1100px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.p-progressbar-determinate .p-progressbar-value-animate {
+  transition: none;
+}
