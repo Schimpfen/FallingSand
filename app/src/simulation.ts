@@ -36,11 +36,14 @@ const STATE_COLORS: Record<CellState, string> = {
 
 export const colors = STATE_COLORS;
 
+type Dir = -1 | 0 | 1;
+
 export class SimulationEngine {
   width: number;
   height: number;
   grid: Uint8Array;
   stopped: Uint8Array;
+  lastDir: Int8Array;
   floorMin: number;
   floorMax: number;
   mixRatio: number;
@@ -61,6 +64,7 @@ export class SimulationEngine {
     this.mixRatio = clamp01(config.mixRatio ?? 0.7);
     this.grid = new Uint8Array(this.width * this.height);
     this.stopped = new Uint8Array(this.width * this.height);
+    this.lastDir = new Int8Array(this.width * this.height);
     this.columnOrder = new Uint16Array(this.width);
     for (let i = 0; i < this.width; i++) {
       this.columnOrder[i] = i;
@@ -74,12 +78,11 @@ export class SimulationEngine {
   }
 
   private updateFlowParameters() {
-    // Fixed parameters: fine flows like water, coarse is moderately sticky.
     this.fineDiagonalProb = 1;
-    this.coarseDiagonalProb = 0.9;
+    this.coarseDiagonalProb = 0.6;
 
-    this.fineLateralProb = 0.9;
-    this.coarseLateralProb = 0.4;
+    this.fineLateralProb = 0.98;
+    this.coarseLateralProb = 0.2;
   }
 
   setMixRatio(value: number) {
@@ -94,6 +97,7 @@ export class SimulationEngine {
       ) {
         this.grid[i] = CellState.Empty;
         this.stopped[i] = 0;
+        this.lastDir[i] = 0;
       }
     }
   }
@@ -112,6 +116,7 @@ export class SimulationEngine {
     this.floorMax = upperBound;
     this.grid.fill(CellState.Empty);
     this.stopped.fill(0);
+    this.lastDir.fill(0);
     const heights = this.buildSlopeHeights(clampedMin, upperBound);
     heights.forEach((height, x) => {
       const cappedHeight = Math.max(0, Math.min(this.height, height));
@@ -140,6 +145,7 @@ export class SimulationEngine {
     const index = point.y * this.width + point.x;
     this.grid[index] = state;
     this.stopped[index] = 0;
+    this.lastDir[index] = 0;
   }
 
   getCell(point: GridPoint) {
@@ -157,12 +163,31 @@ export class SimulationEngine {
     );
   }
 
-  private move(source: GridPoint, destination: GridPoint, moved: Uint8Array) {
+  private wakeAboveSource(source: GridPoint) {
+    const y = source.y - 1;
+    if (y < 0) return;
+    const xs = [source.x - 1, source.x, source.x + 1];
+    for (const x of xs) {
+      if (!this.inBounds(y, x)) continue;
+      const idx = y * this.width + x;
+      this.stopped[idx] = 0;
+    }
+  }
+
+  private move(
+    source: GridPoint,
+    destination: GridPoint,
+    moved: Uint8Array,
+    dir: Dir
+  ) {
     const sourceIndex = source.y * this.width + source.x;
     const destIndex = destination.y * this.width + destination.x;
     this.grid[destIndex] = this.grid[sourceIndex];
     this.grid[sourceIndex] = CellState.Empty;
     this.stopped[destIndex] = 0;
+    this.wakeAboveSource(source);
+    this.lastDir[destIndex] = dir;
+    this.lastDir[sourceIndex] = 0;
     moved[destIndex] = 1;
   }
 
@@ -176,6 +201,7 @@ export class SimulationEngine {
       (Math.random() < this.mixRatio ? CellState.Fine : CellState.Coarse);
     this.grid[index] = state;
     this.stopped[index] = 0;
+    this.lastDir[index] = 0;
     return true;
   }
 
@@ -202,62 +228,156 @@ export class SimulationEngine {
       for (let row = this.height - 2; row >= 0; row--) {
         const index = row * this.width + column;
         if (moved[index]) continue;
+
         const state = this.grid[index] as CellState;
         if (state !== CellState.Fine && state !== CellState.Coarse) continue;
 
         const below: GridPoint = { y: row + 1, x: column };
         if (this.isEmpty(below.y, below.x)) {
-          this.move({ y: row, x: column }, below, moved);
+          const dir = (this.lastDir[index] as Dir) ?? 0;
+          this.move({ y: row, x: column }, below, moved, dir);
           changed = true;
           continue;
         }
 
         if (this.stopped[index]) continue;
 
-        const diag: GridPoint[] = [
-          { y: row + 1, x: column - 1 },
-          { y: row + 1, x: column + 1 },
-        ].filter((p) => this.isEmpty(p.y, p.x));
+        const dirPref = this.lastDir[index] as Dir;
 
-        if (diag.length === 2) {
-          const chosen = diag[Math.floor(Math.random() * diag.length)];
-          this.move({ y: row, x: column }, chosen, moved);
-          changed = true;
-          continue;
-        }
+        const dl = this.isEmpty(row + 1, column - 1);
+        const dr = this.isEmpty(row + 1, column + 1);
 
         const slideChance =
           state === CellState.Fine
             ? this.fineDiagonalProb
             : this.coarseDiagonalProb;
 
-        if (diag.length && Math.random() < slideChance) {
-          const chosen = diag[Math.floor(Math.random() * diag.length)];
-          this.move({ y: row, x: column }, chosen, moved);
-          changed = true;
+        if (dl || dr) {
+          if (dirPref === -1) {
+            if (dl && Math.random() < slideChance) {
+              this.move(
+                { y: row, x: column },
+                { y: row + 1, x: column - 1 },
+                moved,
+                -1
+              );
+              changed = true;
+            } else {
+              this.stopped[index] = 1;
+            }
+            continue;
+          }
+
+          if (dirPref === 1) {
+            if (dr && Math.random() < slideChance) {
+              this.move(
+                { y: row, x: column },
+                { y: row + 1, x: column + 1 },
+                moved,
+                1
+              );
+              changed = true;
+            } else {
+              this.stopped[index] = 1;
+            }
+            continue;
+          }
+
+          const possibleDirs: Dir[] = [];
+          if (dl) possibleDirs.push(-1);
+          if (dr) possibleDirs.push(1);
+
+          const chosenDir =
+            possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
+
+          if (Math.random() < slideChance) {
+            this.move(
+              { y: row, x: column },
+              { y: row + 1, x: column + chosenDir },
+              moved,
+              chosenDir
+            );
+            changed = true;
+          } else {
+            this.stopped[index] = 1;
+          }
           continue;
         }
 
-        const lateralNeighbors = [
-          { y: row, x: column - 1 },
-          { y: row, x: column + 1 },
-        ].filter((p) => this.isEmpty(p.y, p.x));
+        const ll = this.isEmpty(row, column - 1);
+        const rr = this.isEmpty(row, column + 1);
+
         const lateralChance =
           state === CellState.Fine
             ? this.fineLateralProb
             : this.coarseLateralProb;
-        if (lateralNeighbors.length && Math.random() < lateralChance) {
-          const destination =
-            lateralNeighbors[
-              Math.floor(Math.random() * lateralNeighbors.length)
-            ];
-          this.move({ y: row, x: column }, destination, moved);
-          changed = true;
-        } else {
-          this.stopped[index] = 1;
+
+        if (ll || rr) {
+          if (dirPref === -1) {
+            if (!ll) {
+              this.stopped[index] = 1;
+              continue;
+            }
+            if (Math.random() < lateralChance) {
+              this.move(
+                { y: row, x: column },
+                { y: row, x: column - 1 },
+                moved,
+                -1
+              );
+              changed = true;
+            } else {
+              this.stopped[index] = 1;
+            }
+            continue;
+          }
+
+          if (dirPref === 1) {
+            if (!rr) {
+              this.stopped[index] = 1;
+              continue;
+            }
+            if (Math.random() < lateralChance) {
+              this.move(
+                { y: row, x: column },
+                { y: row, x: column + 1 },
+                moved,
+                1
+              );
+              changed = true;
+            } else {
+              this.stopped[index] = 1;
+            }
+            continue;
+          }
+
+          const chosenDir: Dir =
+            ll && rr ? (Math.random() < 0.5 ? -1 : 1) : ll ? -1 : 1;
+
+          const destX = column + chosenDir;
+          if (!this.isEmpty(row, destX)) {
+            this.stopped[index] = 1;
+            continue;
+          }
+
+          if (Math.random() < lateralChance) {
+            this.move(
+              { y: row, x: column },
+              { y: row, x: destX },
+              moved,
+              chosenDir
+            );
+            changed = true;
+          } else {
+            this.stopped[index] = 1;
+          }
+          continue;
         }
+
+        this.stopped[index] = 1;
       }
     }
+
     return changed;
   }
 
@@ -299,7 +419,6 @@ export class SimulationEngine {
     const { columns, heights } = this.surfaceProfile();
     if (heights.length < 2) return 0;
 
-    // Find peak column.
     let peakIdx = 0;
     for (let i = 1; i < heights.length; i++) {
       if (heights[i] > heights[peakIdx]) {
