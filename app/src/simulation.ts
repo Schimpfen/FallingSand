@@ -234,8 +234,10 @@ export class SimulationEngine {
 
         const below: GridPoint = { y: row + 1, x: column };
         if (this.isEmpty(below.y, below.x)) {
-          const dir = (this.lastDir[index] as Dir) ?? 0;
-          this.move({ y: row, x: column }, below, moved, dir);
+          if (row == 0 && Math.random() < 0.5) {
+            continue;
+          }
+          this.move({ y: row, x: column }, below, moved, 0);
           changed = true;
           continue;
         }
